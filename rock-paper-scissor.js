@@ -14,30 +14,34 @@ function getComputerchoice() {
 }
 
 function getPlayerChoice() {
-    playerChoice = prompt('What is your choice? ')
-    return playerChoice = playerChoice.toLowerCase();
+        playerChoice = prompt('What is your choice? ')
+        return playerChoice = playerChoice.toLowerCase();
 }
 
 function game(playerChoice, computerChoice) {
     let result = ""
+        if ((playerChoice == 'rock' && computerChoice == 'paper') ||
+            (playerChoice == 'scissor' && computerChoice == 'rock') ||
+            (playerChoice == 'paper' && computerChoice == 'scissor')) {
+            result = 'You lose, ' + computerChoice + ' beats ' + playerChoice
+        }
 
-    if ((playerChoice == 'rock' && computerChoice == 'paper') ||
-        (playerChoice == 'scissor' && computerChoice == 'rock') ||
-        (playerChoice == 'paper' && computerChoice == 'scissor')) {
-        result = 'Lose'
+        else if (playerChoice == computerChoice) {
+            result = 'Tie, ' + playerChoice + ' same as ' + computerChoice
     }
 
-    else if (playerChoice == computerChoice) {
-        result = 'Tie'
-    }
-
-    else {'Win'}
-    return result;
+        else {result = 'You win, ' + playerChoice + ' beats ' + computerChoice}
+        return result;
 }
 let computerChoice;
 let playerChoice;
+let playerScore = 0;
+let computerScore= 0;
 
-console.log(getComputerchoice());
-console.log(getPlayerChoice());
-console.log(game(playerChoice, computerChoice));
+for (let i = 0; i<5; i++) {
+    console.log(getComputerchoice());
+    console.log(getPlayerChoice());
+    console.log(game(playerChoice, computerChoice));
+}
+
        
