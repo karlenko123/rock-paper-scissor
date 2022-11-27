@@ -15,7 +15,8 @@ function getComputerchoice() {
 
 function getPlayerChoice() {
         playerChoice = prompt('What is your choice? ')
-        return playerChoice = playerChoice.toLowerCase();
+        playerChoice = playerChoice.toLowerCase();
+        return 'You chose ' + playerChoice;
 }
 
 function game(playerChoice, computerChoice) {
@@ -24,13 +25,18 @@ function game(playerChoice, computerChoice) {
             (playerChoice == 'scissor' && computerChoice == 'rock') ||
             (playerChoice == 'paper' && computerChoice == 'scissor')) {
             result = 'You lose, ' + computerChoice + ' beats ' + playerChoice
+            computerScore += 1;
         }
 
         else if (playerChoice == computerChoice) {
             result = 'Tie, ' + playerChoice + ' same as ' + computerChoice
     }
 
-        else {result = 'You win, ' + playerChoice + ' beats ' + computerChoice}
+        else {
+            result = 'You win, ' + playerChoice + ' beats ' + computerChoice
+            playerScore += 1;
+        }
+
         return result;
 }
 let computerChoice;
@@ -39,9 +45,17 @@ let playerScore = 0;
 let computerScore= 0;
 
 for (let i = 0; i<5; i++) {
-    console.log(getComputerchoice());
+    console.log("I chose " + getComputerchoice());
     console.log(getPlayerChoice());
     console.log(game(playerChoice, computerChoice));
 }
+
+if (playerScore == computerScore) {
+    console.log("It's a tie match! The score is " + playerScore + ":" + computerScore);
+}
+else if (playerScore > computerScore) {
+    console.log("You won the computer! The score is " + playerScore + ":" + computerScore + " for you");
+}
+else {console.log("The computer defeats you!The score is " + computerScore + ":" + playerScore + " for the computer");}
 
        
