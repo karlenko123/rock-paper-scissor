@@ -1,61 +1,38 @@
-function getComputerchoice() {
+function getComputerChoice () {
     let number = Math.floor(Math.random() * 3)
     switch (number) {
-        case 0: 
-        return computerChoice = 'rock';
+        case 0: return 'rock' 
         break;
-        case 1:
-        return computerChoice = 'paper';
+        case 1: return 'paper' 
         break;
-        case 2: 
-        return computerChoice = 'scissor';
+        case 2: return 'scissors' 
         break;
     }
 }
-
-function getPlayerChoice() {
-        playerChoice = prompt('What is your choice? ')
-        playerChoice = playerChoice.toLowerCase();
-        return 'You chose ' + playerChoice;
-}
-
-function game(playerChoice, computerChoice) {
-    let result = ""
-        if ((playerChoice == 'rock' && computerChoice == 'paper') ||
-            (playerChoice == 'scissor' && computerChoice == 'rock') ||
-            (playerChoice == 'paper' && computerChoice == 'scissor')) {
-            result = 'You lose, ' + computerChoice + ' beats ' + playerChoice
-            computerScore += 1;
-        }
-
-        else if (playerChoice == computerChoice) {
-            result = 'Tie, ' + playerChoice + ' same as ' + computerChoice
-    }
-
-        else {
-            result = 'You win, ' + playerChoice + ' beats ' + computerChoice
-            playerScore += 1;
-        }
-
-        return result;
-}
-let computerChoice;
-let playerChoice;
 let playerScore = 0;
-let computerScore= 0;
+let computerScore = 0;
+function playRound(e) {
 
-for (let i = 0; i<5; i++) {
-    console.log("I chose " + getComputerchoice());
-    console.log(getPlayerChoice());
-    console.log(game(playerChoice, computerChoice));
-}
+    let result = ''
+    if (this.className == getComputerChoice()) {
+        result = "Tie<br> Player: " + playerScore + "<br>Computer: " + computerScore;
+    }
+    else if ((this.className == 'rock' & getComputerChoice() == 'scissors') ||
+                (this.className == 'scissors' & getComputerChoice() == 'paper') ||
+                (this.className == 'paper' & getComputerChoice() == 'rock')) {
+        playerScore += 1;
+        result = "You win!<br> Player: " + playerScore + "<br>Computer: " + computerScore;
+        }  
+    else {
+        computerScore += 1
+        result = "You lose!<br> Player: " + playerScore + "<br>Computer: " + computerScore;
+    }
 
-if (playerScore == computerScore) {
-    console.log("It's a tie match! The score is " + playerScore + ":" + computerScore);
+    document.getElementById('text').innerHTML = result;
+    return
+    
 }
-else if (playerScore > computerScore) {
-    console.log("You won the computer! The score is " + playerScore + ":" + computerScore + " for you");
-}
-else {console.log("The computer defeats you!The score is " + computerScore + ":" + playerScore + " for the computer");}
-
-       
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => {
+    button.addEventListener('click', playRound)
+})  
